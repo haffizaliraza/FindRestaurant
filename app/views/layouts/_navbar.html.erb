@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white">
+  <div class="row container-fluid ">
+    <div class=" col-4 collapse  navbar-collapse justify-content-center ">
+      <div class="nav-link fw-bolder">
+        <a href="/"><%= image_tag "restaurent.png", class: 'brand-logo', alt: "Location" %></a>
+      </div>
+    </div>
+
+    <div class=" col-4 collapse  navbar-collapse justify-content-center " id="navbarNav">
+      <%= link_to get_location_path, method: :get, data: { turbo_frame: "remote_modal" }, class: 'text-decoration-none' do %>
+        <ul class="navbar-nav navbar-hover ">
+          <li class="nav-item navbar-logo">
+            <span class=""><%= image_tag "icons8-location-50.png", alt: "Location" %></span>
+          </li>
+          <li class="nav-item navbar-Location">
+            <span class="nav-link">Location <span><%= session[:location] ? session[:location] : 'Choose Location' %></span></span>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class=" col-4 collapse  navbar-collapse justify-content-center " id="navbarNav">
+      <ul class="navbar-nav ">
+        <% unless user_signed_in? %>
+          <li class="nav-item">
+            <a class=" nav-link  nav-button1 cursor-pointer" href="<%= new_user_session_path %>"><button type="button">Log in</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  nav-button2" href="<%= new_user_registration_path %>"><button type="button">Sign up</button></a>
+          </li>
+        <% else %>
+          <% if current_user.admin_user? %>
+            <li class="nav-item">
+              <a class=" nav-link  nav-button1 cursor-pointer" href="<%= dashboard_path %>"><button type="button">Dashboard</button></a>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure you want to logout?' } }, class: 'btn-theme mt-2' do %>
+              Logout
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

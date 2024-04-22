@@ -1,0 +1,44 @@
+<%= render 'layouts/content_header', content_header: 'Locations', path: new_admin_location_path %>
+<div class="content">
+  <div class="m-3">
+    <div class="row text-center">
+      <div class="col-sm-9 col-lg-12">
+        <div class="table-responsive elevation-1">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%if @locations.size !=0 %>
+                <% @locations&.each do |location| %>
+                  <%= turbo_frame_tag "location-#{location.id}" do %>
+                    <tr>
+                      <td><%= location.id %></td>
+                      <td><%= location.name.humanize %></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <%= link_to edit_admin_location_path(location), class: 'mx-2 btn-theme-secondary' do %>
+                          <i class="fas fa-pencil-alt"></i>
+                        <% end %>
+                        <%= button_to admin_location_path(location), method: :delete, form: { data: { turbo_confirm: 'Are you sure you want to delete?' } }, class: 'mx-2 btn btn-sm btn-danger' do %>
+                          <i class="fa-solid fa-trash"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="6" class="text-center text-secondary py-5">No Records Found</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

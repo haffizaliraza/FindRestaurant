@@ -1,0 +1,45 @@
+<%= render 'layouts/content_header', content_header: header, path: nil %>
+<div class="content">
+  <%= form_with(model: [:admin, @hotel], url: path, method: method, class: 'form') do |f| %>
+    <div class="card mx-3 p-3">
+      <div class="card-body">
+        <div>
+          <h4>Restaurent Detail</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :name %><span class="text-danger">*</span>
+              <%= f.text_field :name, placeholder: 'Enter name', class: 'form-control', required: true %>
+              <span class="text-danger"><%= @hotel.errors.full_messages_for(:name).join(', ') if @hotel.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :address %><span class="text-danger">*</span>
+              <%= f.text_field :address, placeholder: 'Enter address', class: 'form-control', required: true %>
+              <span class="text-danger"><%= @hotel.errors.full_messages_for(:address).join(', ') if @hotel.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :phone %><span class="text-danger">*</span>
+              <%= f.text_field :phone, placeholder: 'Enter phone', class: 'form-control' %>
+              <span class="text-danger"><%= @hotel.errors.full_messages_for(:phone).join(', ') if @hotel.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :longitude %><span class="text-danger">*</span>
+              <%= f.text_field :latitude, placeholder: 'Enter Restaurent Name', class: 'form-control' %>
+              <span class="text-danger"><%= @hotel.errors.full_messages_for(:latitude).join(', ') if @hotel.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :longitude %><span class="text-danger">*</span>
+              <%= f.text_field :longitude, placeholder: 'Enter Restaurent Name', class: 'form-control' %>
+              <span class="text-danger"><%= @hotel.errors.full_messages_for(:longitude).join(', ') if @hotel.present? %></span>
+            </div>
+          </div>
+          <div class="col-sm-7 mb-3 form-group">
+            <div class="text-right mt-3">
+              <%= f.submit( 'Save', class: 'btn btn-theme') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

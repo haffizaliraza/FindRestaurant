@@ -1,0 +1,27 @@
+<div class="col-md-4 d-flex justify-content-center py-5">
+  <h4><%=@user.name%>'s profile</h4>
+  <% if @user.admin_user? %>
+    <%= link_to edit_admin_user_path(@user), title: 'Edit Profile', class: 'text-dark text-lg pl-3' do %>
+      <i class="fas fa-pencil-alt text-theme"></i>
+    <%end%>
+  <%end%>
+</div>
+<div class="row py-3">
+  <div class="col-md-4 d-flex justify-content-center py-4">
+    <%#= render 'layouts/shared/show_image', obj: @user, size: 200, profile_initials:'show-initials' %>
+  </div>
+  <div class="col-md-6 py-4">
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Name:</strong></div>
+      <div class="col-md-3"><%= @user.name %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Email:</strong></div>
+      <div class="col-md-3"><%= @user.email %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>User Role:</strong></div>
+      <div class="col-md-3"><%= @user.type.titleize %></div>
+    </div>
+  </div>
+</div>

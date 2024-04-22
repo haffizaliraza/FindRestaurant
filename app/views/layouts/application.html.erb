@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Restaurent</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body>
+    <%=  render 'layouts/navbar' %>
+    <div id="flash" class="position-absolute" style="z-index: 1040;right: 10px; top: 10px;">
+      <%= render 'layouts/notice' %>
+    </div>
+    <%= yield %>
+    <%= turbo_frame_tag "remote_modal", target: "_top" %>
+  </body>
+</html>

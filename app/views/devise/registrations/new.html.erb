@@ -1,0 +1,38 @@
+<div class="login-wrapper">
+  <div class="bg-white container rounded p-3 pb-5 shadow text-center w-25">
+    <%= image_tag 'restaurent.png', class: "w-75" %>
+    <div class="py-3"></div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'mb-3 form-signin', id: 'login-form'}) do |f| %>
+      <%= f.hidden_field :type, value: "AdminUser" %>
+      <div class="my-3">
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Enter your Name", required: true %>
+      </div>
+      <div class="my-3">
+        <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "Enter your email address", required: true %>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex toggle-password" data-controller="password-toggle">
+          <span class="w-100">
+            <%= f.password_field :password, class: "form-control", placeholder: "Enter password", required: true, data: { password_toggle_target: 'password'} %>
+          </span>
+          <span data-action="click->password-toggle#toggle" class='btn' title='Show password'>
+            <%= render 'layouts/shared/password_icons' %>
+          </span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex toggle-password" data-controller="password-toggle">
+          <span class="w-100">
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password", required: true, data: { password_toggle_target: 'password'} %>
+          </span>
+          <span data-action="click->password-toggle#toggle" class='btn' title='Show password'>
+            <%= render 'layouts/shared/password_icons' %>
+          </span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <%= f.submit "Sign up", class: "btn-theme" %>
+      </div>
+    <% end %>
+  </div>
+</div>

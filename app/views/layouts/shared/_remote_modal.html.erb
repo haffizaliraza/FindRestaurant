@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "remote_modal" do %>
+  <div class="modal fade bd-example-modal-lg" id="shareRecipeModal" tabindex="-1" aria-labelledby="newItemRemoteModalLabel" aria-hidden="true" data-controller="modals" data-action="turbo:before-render@document->modals#hideBeforeRender">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <div class="modal-content" id="modal_content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newItemRemoteModalLabel"><%= title %></h5>
+          <button type="button" class="btn-close btn" data-action="click->modals#closeModal"></button>
+        </div>
+        <div class="modal-body modal-questions remote_modal_body" id="remote_modal_body">
+            <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

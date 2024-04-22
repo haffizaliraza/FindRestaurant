@@ -1,0 +1,51 @@
+<%= render 'layouts/content_header', content_header: 'Restaurents', path: new_admin_hotel_path %>
+<div class="text-right mb-2 mr-2">
+  <%= render 'layouts/shared/import_file', path: import_file_admin_hotels_path %>
+</div>
+<div class="content">
+  <div class="m-3">
+    <div class="row text-center">
+      <div class="col-sm-9 col-lg-12">
+        <div class="table-responsive elevation-1">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%if @hotels.size !=0 %>
+                <% @hotels&.each do |hotel| %>
+                  <%= turbo_frame_tag "hotel-#{hotel.id}" do %>
+                    <tr>
+                      <td><%= hotel.id %></td>
+                      <td><%= hotel.name.titleize %></td>
+                      <td><%= hotel.phone %></td>
+                      <td><%= hotel.address %></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <%= link_to edit_admin_hotel_path(hotel), class: 'mx-2 btn-theme-secondary' do %>
+                          <i class="fas fa-pencil-alt"></i>
+                        <% end %>
+                        <%= button_to admin_hotel_path(hotel), method: :delete, form: { data: { turbo_confirm: 'Are you sure you want to delete?' } }, class: 'mx-2 btn btn-sm btn-danger' do %>
+                          <i class="fa-solid fa-trash"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="6" class="text-center text-secondary py-5">No Records Found</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

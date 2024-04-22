@@ -1,0 +1,222 @@
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: sans-serif;
+  min-height: 100%;
+  grid-template-columns: 1fr min(100%);
+}
+.wrapper {
+  display: flex;
+  .main-header {
+    border: none;
+    display: flex;
+    padding: 10px;
+  }
+  .content-wrapper {
+    background: none;
+    margin-left: 10px;
+    min-height: 100vh;
+    margin-left: 250px;
+    transition: all ease 0.3s;
+    width: 100%;
+  }
+  .main-sidebar {
+    border: none;
+    border-radius: 0;
+    position: fixed;
+    height: 100%;
+    transition: all ease 0.3s;
+    z-index: 999;
+    width: 228px;
+    background-color: #645e5e;
+    .brand-link {
+      .profile-element {
+        .img-circle {
+          border-radius: 50%;
+        }
+        img {
+          width: 200px;
+        }
+      }
+    }
+    .nav-sidebar {
+      margin: 0;
+      padding: 0;
+      li {
+        a {
+          border-radius: 0;
+          color: #eebc4a;
+          display: flex;
+          font-size: 17px;
+          margin-bottom: 0.2rem;
+          padding: 0.5rem 1rem;
+          text-decoration: none;
+          svg {
+            font-size: 22px;
+            margin-right: 10px;
+            width: 25px;
+          }
+          &:hover {
+            color: #fff;
+            background: #eebc4a;
+          }
+        }
+        &.active {
+          a {
+            color: #fff;
+            background: lightslategrey;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 479px) {
+    .content-wrapper {
+      margin-left: 0;
+      .content-header {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+.login-wrapper {
+  align-items: center;
+  background: #f5f6f6;
+  display: flex;
+  height: 100vh;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.navbar-logo img {
+  max-width: 20px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.navbar-Location span {
+  color: #eebc4a;
+}
+
+.logo {
+  color: #eebc4a;
+}
+
+.nav-button1 button {
+  border: 1px solid #eebc4a;
+  color: #eebc4a;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 15px 3px 15px;
+}
+.btn-theme {
+  border: 1px solid #eebc4a;
+  color: white;
+  background-color: #eebc4a;
+  border-radius: 8px;
+  padding: 3px 15px 3px 15px;
+}
+.btn-theme:hover {
+  border: 1px solid #eebc4a;
+  color: #eebc4a;
+  background-color: white;
+}
+
+.btn-theme-secondary {
+  border: 1px solid #eebc4a;
+  color: #eebc4a;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 15px 3px 15px;
+}
+.btn-theme-secondary:hover {
+  border: 1px solid #eebc4a;
+  color: white;
+  background-color: #eebc4a;
+}
+
+.nav-button2 button {
+  border: 1px solid #eebc4a;
+  color: white;
+  background-color: #eebc4a;
+  border-radius: 8px;
+  padding: 3px 15px 3px 15px;
+}
+
+.nav-img1 img {
+  max-width: 20px;
+  height: 20px;
+}
+
+.arrow {
+  transform: rotate(270deg);
+  color: #eebc4a;
+}
+
+.nav-img1 {
+  width: 100px;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.nav-img2 {
+  width: 50px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.banner-text {
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-text h1 {
+  font-weight: 400;
+}
+
+.banner-img {
+  background-image: url(./refresh-hero-city-pk.webp);
+  background-size: cover;
+  background-position: center;
+}
+.brand-logo {
+  width: 45%;
+}
+
+.bg-theme {
+  border: 1px solid #eebc4a;
+  color: white;
+  background-color: #eebc4a;
+}
+.bg-theme:hover {
+  border: 1px solid #eebc4a;
+  color: #eebc4a;
+  background-color: white;
+}
+
+.bg-theme-secondary {
+  border: 1px solid #eebc4a;
+  color: #eebc4a;
+  background-color: white;
+}
+.bg-theme-secondary:hover {
+  border: 1px solid #eebc4a;
+  color: white;
+  background-color: #eebc4a;
+}
+
+.text-theme {
+  color: #eebc4a;
+}

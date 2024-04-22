@@ -1,0 +1,10 @@
+<%= render 'layouts/shared/remote_modal', title: "Select Nearby Location" do %>
+  <%= form_tag(root_path, method: :get) do %>
+    <div class='text-center'>
+      <div class="form-group text-start mb-2">
+        <%= select_tag :location, options_for_select(@available_locations), { include_blank: "Select location", class: "form-control" } %>
+      </div>
+      <%= submit_tag "Submit", class: "btn btn-theme-secondary" %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<% valid_keys = ['Users', 'Restaurents', 'Items', 'Deals', 'Locations'] %>
+
+<% nav_item.each do |key, value| %>
+  <% if valid_keys.include?(key) %>
+    <li class="nav-item">
+      <%= render 'layouts/shared/sidebar_nav_item', path: value[:path], icon: value[:icon], title: value[:title] %>
+    </li>
+  <% end %>
+<% end %>

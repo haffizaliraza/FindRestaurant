@@ -1,0 +1,55 @@
+<div>
+  <section style="background-color: white;">
+    <div class="container py-5">
+      <div>
+        <h4 class="text-center mt-4 mb-5"><strong>Nearby</strong></h4>
+        <div class="row">
+          <% if @nearby_hotels.count > 0 %>
+            <% @nearby_hotels.each do |hotel| %>
+              <div class="col-lg-4 col-md-12 mb-4">
+                <%= link_to hotel_path(hotel), class: 'text-decoration-none' do %>
+                  <div class="card">
+                    <div class="position-relative">
+                      <%= image_tag "omwm-listing.webp", class: "card-img-top w-100", alt: "Product Image" %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title mb-3"><%= hotel.name %></h5>
+                      <p><%= hotel.address %></p>
+                      <h6 class="mb-3"><%= hotel.phone %></h6>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+            <% end %>
+          <% else %>
+            <p class='fw-bold fs-4 text-center text-theme fst-italic'>Change location to see result!</p>
+          <% end %>
+        </div>
+      <div>
+      <div>
+        <h4 class="text-center mt-4 mb-5"><strong>Recommended</strong></h4>
+        <div class="row">
+          <% @hotels.each do |hotel| %>
+            <div class="col-lg-4 col-md-12 mb-4">
+              <%= link_to hotel_path(hotel), class: 'text-decoration-none' do %>
+                <div class="card">
+                  <div class="position-relative">
+                    <%= image_tag "omwm-listing.webp", class: "card-img-top w-100", alt: "Product Image" %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title mb-3"><%= hotel.name %></h5>
+                    <p><%= hotel.address %></p>
+                    <h6 class="mb-3"><%= hotel.phone %></h6>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+      <div>
+    </div>
+  </section>
+</div>
+<% unless @location %>
+  <%= button_to "",  get_location_path, class: 'd-none', method: :get, form: { data: { controller: 'show-modal', turbo_frame: "remote_modal" } } %>
+<% end %>

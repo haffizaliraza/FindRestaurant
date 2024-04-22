@@ -1,0 +1,40 @@
+<%= render 'layouts/content_header', content_header: header, path: nil %>
+<div class="content">
+  <%= form_with(model: [:admin, @product], url: path, method: method, class: 'form') do |f| %>
+    <div class="card mx-3 p-3">
+      <div class="card-body">
+        <div>
+          <h4>Product Detail</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :name %><span class="text-danger">*</span>
+              <%= f.text_field :name, placeholder: 'Enter name', class: 'form-control', required: true %>
+              <span class="text-danger"><%= @product.errors.full_messages_for(:name).join(', ') if @product.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :price %><span class="text-danger">*</span>
+              <%= f.text_field :price, placeholder: 'Enter price', class: 'form-control', required: true %>
+              <span class="text-danger"><%= @product.errors.full_messages_for(:price).join(', ') if @product.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label :description %><span class="text-danger">*</span>
+              <%= f.text_field :description, placeholder: 'Enter description', class: 'form-control' %>
+              <span class="text-danger"><%= @product.errors.full_messages_for(:description).join(', ') if @product.present? %></span>
+            </div>
+            <div class="col-sm-7 mb-3 form-group">
+              <%= f.label 'Restaurent' %><span class="text-danger">*</span>
+              <%= f.select :hotel_id, options_for_select(hotel_options, product.hotel_id), {}, class: "form-control", required: true %>
+              <span class="text-danger"><%= @product.errors.full_messages_for(:hotel_id).join(', ') if @product.present? %></span>
+            </div>
+          </div>
+          <div class="col-sm-7 mb-3 form-group">
+            <div class="text-right mt-3">
+              <%= f.submit( 'Save', class: 'btn btn-theme') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

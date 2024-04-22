@@ -1,0 +1,26 @@
+<div class="col-md-4 d-flex justify-content-center py-5">
+  <h4><%=@hotel.name%>'s profile</h4>
+  <%= link_to edit_admin_hotel_path(@hotel), title: 'Edit', class: 'text-dark text-lg pl-3' do %>
+    <i class="fas fa-pencil-alt text-theme"></i>
+  <%end%>
+</div>
+<div class="row py-3">
+  <div class="col-md-6 py-4">
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Address:</strong></div>
+      <div class="col-md-3"><%= @hotel.address %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Phone Number:</strong></div>
+      <div class="col-md-3"><%= @hotel.phone %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Latitude:</strong></div>
+      <div class="col-md-3"><%= @hotel.latitude %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Longitude:</strong></div>
+      <div class="col-md-3"><%= @hotel.longitude %></div>
+    </div>
+  </div>
+</div>

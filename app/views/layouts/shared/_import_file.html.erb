@@ -1,0 +1,14 @@
+<%= form_with url: path, method: :post, class:'d-inline-block mx-2', data: { controller: 'csv-uploader' } do |f| %>
+  <div class="d-inline-block">
+    <%= f.file_field 'import_file', class: 'd-none', data: { csv_uploader_target: "input", action: "csv-uploader#displayFileName" } %>
+    <span class="btn bg-theme-secondary" data-action="click->csv-uploader#selectFile">
+      Upload CSV <i class="fa-solid fa-file-arrow-up text-theme"></i>
+    </span>
+    <span data-csv-uploader-target="output"></span>
+  </div>
+  <div class="d-inline-block">
+    <%= f.button class: "btn bg-theme" do %>
+      Import File
+    <% end %>
+  </div>
+<% end %>

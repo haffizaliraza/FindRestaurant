@@ -1,0 +1,26 @@
+<div class="col-md-4 d-flex justify-content-center py-5">
+  <h4><%=@product.name%>'s profile</h4>
+  <%= link_to edit_admin_product_path(@product), title: 'Edit', class: 'text-dark text-lg pl-3' do %>
+    <i class="fas fa-pencil-alt text-theme"></i>
+  <%end%>
+</div>
+<div class="row py-3">
+  <div class="col-md-6 py-4">
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Name:</strong></div>
+      <div class="col-md-3"><%= @product.name %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Restaurent Name:</strong></div>
+      <div class="col-md-3"><%= @product.hotel_name %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Price:</strong></div>
+      <div class="col-md-3"><%= @product.price %></div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3"><strong>Description:</strong></div>
+      <div class="col-md-3"><%= @product.description %></div>
+    </div>
+  </div>
+</div>

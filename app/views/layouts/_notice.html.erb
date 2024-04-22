@@ -1,0 +1,9 @@
+<div data-controller="toast">
+  <% flash.each do |f| %>
+    <% toast_class = f[0].to_s.gsub('alert', 'danger').gsub('notice', 'success') %>
+    <div class="alert alert-<%= toast_class %>  alert-dismissible fade show" role="alert">
+      <%= f[1] %>
+      <button type="button" data-action='click->toast#close' class="btn-close btn-sm btn" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</div>

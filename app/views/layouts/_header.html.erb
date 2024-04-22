@@ -1,0 +1,12 @@
+<div class="main-header align-items-center justify-content-between">
+	<h4 class="ps-2">Welcome <%= user.name %></h4>
+	<div class="d-flex">
+		<%= link_to edit_admin_user_path(current_user), class: 'btn-theme-secondary' do %>
+			<i class="fa-solid fa-user-pen"></i>
+		<% end %>
+		<%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure you want to logout?' } }, class: 'mx-2 btn btn-sm btn-danger' do %>
+			<i class="fa-solid fa-right-from-bracket"></i>
+		<% end %>
+	</div>
+</div>
+
