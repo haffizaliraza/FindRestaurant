@@ -77,3 +77,5 @@ end
 gem "devise", "~> 4.9"
 
 gem 'simple_form'
+
+gem 'acts_as_nps_rateable'

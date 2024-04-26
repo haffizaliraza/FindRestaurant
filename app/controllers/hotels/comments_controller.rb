@@ -6,7 +6,7 @@ class Hotels::CommentsController < ApplicationController
   private
 
   def after_create_path
-    hotel_path(@commentable, @commentable)
+    hotel_path(@commentable, tab: 'review')
   end
 
   def set_commentable

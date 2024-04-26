@@ -20,8 +20,6 @@ class Comment < ApplicationRecord
   delegate :id, :name, :avatar, to: :user, prefix: :creator
 
   def creator?(curr_user)
-    return false if curr_user.nil?
-
     creator_id == curr_user.id
   end
 

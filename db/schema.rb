@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_26_134511) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_26_180548) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -87,12 +87,31 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_26_134511) do
     t.time "open_at"
     t.integer "comments_count"
     t.time "last_updated_at"
+    t.boolean "dine_in"
+    t.boolean "take_away"
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "nps_ratings", force: :cascade do |t|
+    t.integer "score"
+    t.integer "nps_rateable_id"
+    t.string "nps_rateable_type"
+    t.integer "rater_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "comments"
+    t.string "rater_type", default: "User"
+    t.integer "up_votes", default: 0, null: false
+    t.integer "down_votes", default: 0, null: false
+    t.integer "net_votes", default: 0, null: false
+    t.text "response"
+    t.datetime "responded_at"
+    t.index ["nps_rateable_type", "nps_rateable_id", "rater_type", "rater_id"], name: "acts_as_nps_rateable_unique_index", unique: true
   end
 
   create_table "products", force: :cascade do |t|

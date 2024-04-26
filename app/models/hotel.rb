@@ -5,9 +5,12 @@ require 'csv'
 class Hotel < ApplicationRecord
   include Sluggish
 
+  acts_as_nps_rateable
+
   has_many :deals
   has_many :products
   has_many_attached :images
+  has_many_attached :menus
   has_many :comments, as: :commentable, dependent: :destroy
 
   before_create :set_slug

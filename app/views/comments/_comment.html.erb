@@ -10,10 +10,10 @@
       <span class="hotel-item--date"><%= l comment.created_at, format: :datetime %></span>
     </div>
     <div class="comment--container">
-      <div class="comment--text" data-controller="link-new-tab">
+      <div class="comment--text">
         <%= comment.content %>
       </div>
-      <%= render("comments/comment_actions", comment: comment, user: user) %>
+      <%#= render("comments/comment_actions", comment: comment, user: user) %>
       <div id="<%= dom_id(comment) %>_comments" class="comment--block">
         <%= render partial: "comments/form", locals: { commentable: comment, comment: Comment.new, data: { comment_reply_target: "form" }, class: "d-none" } %>
         <% unless hide_replies %>

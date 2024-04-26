@@ -6,7 +6,7 @@
         <div>
           <h4>Restaurent Detail</h4>
           <hr>
-          <div class="row" data-controller="preview-image">
+          <div class="row">
             <div class="col-sm-7 mb-3 form-group">
               <%= f.label :name %><span class="text-danger">*</span>
               <%= f.text_field :name, placeholder: 'Enter name', class: 'form-control', required: true %>
@@ -40,12 +40,33 @@
                 <%= f.time_field :close_at, placeholder: 'Select Close Time', class: 'form-control' %>
               </div>
             </div>
-            <div class="col-sm-7 mb-3 form-group">
-              <%= f.label :images %>
-              <%= f.file_field :images, multiple: true, class: 'form-control', accept: 'image/*', data: { preview_image_target: 'slider', action: 'change->preview-image#displaySliderPreview' } %>
-              <span class="text-danger"><%= @hotel.errors.full_messages_for(:longitude).join(', ') if @hotel.present? %></span>
+
+            <div class="col-sm-7 mb-3 form-check">
+              <%= f.check_box :dine_in, class: 'form-check-input' %>
+              <%= f.label :dine_in, class: "form-check-label" %>
             </div>
-            <%= render 'layouts/shared/image_form', documents: hotel.images %>
+
+            <div class="col-sm-7 mb-3 form-check">
+              <%= f.check_box :take_away, class: 'form-check-input' %>
+              <%= f.label :take_away, class: "form-check-label" %>
+            </div>
+
+            <div data-controller="preview-image">
+              <div class="col-sm-7 mb-3 form-group">
+                <%= f.label :images %>
+                <%= f.file_field :images, multiple: true, class: 'form-control', accept: 'image/*', data: { preview_image_target: 'slider', action: 'change->preview-image#displaySliderPreview' } %>
+                <span class="text-danger"><%= @hotel.errors.full_messages_for(:images).join(', ') if @hotel.present? %></span>
+              </div>
+              <%= render 'layouts/shared/image_form', documents: hotel.images, div_id: 'image-preview' %>
+            </div>
+            <div data-controller="preview-image">
+              <div class="col-sm-7 mb-3 form-group">
+                <%= f.label :menus %>
+                <%= f.file_field :menus, multiple: true, class: 'form-control', accept: 'image/*', data: { preview_image_target: 'slider', action: 'change->preview-image#displayMenuPreview' } %>
+                <span class="text-danger"><%= @hotel.errors.full_messages_for(:menus).join(', ') if @hotel.present? %></span>
+              </div>
+              <%= render 'layouts/shared/image_form', documents: hotel.menus, div_id: 'menu-preview' %>
+            </div>
           </div>
           <div class="col-sm-7 mb-3 form-group">
             <div class="text-right mt-3">

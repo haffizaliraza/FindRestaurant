@@ -23,11 +23,32 @@
                         <%= hotel.name %>
                       </h5>
                       <h6 class="card-subtitle mb-2 text-muted">
-                      <%= 4.4 %><span>&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                        <%= hotel_rating(hotel.id) %>
+                        <div class="d-flex">
+                          <% hotel_rating(hotel.id).to_i.times do  %>
+                            <span>&#9733;</span>
+                          <% end %>
+                          <% (5 - hotel_rating(hotel.id).to_i).times do %>
+                            <span>&#9734;</span>
+                          <% end %>
+                        </div>
                       </h6>
                       <p class="card-text">
                         <%= hotel.address %>
                       </p>
+                      <p class="card-text">
+                        <% if  hotel.dine_in %>
+                          <span class="btn-theme-secondary px-1 py-2 rounded">Dine In</span>
+                        <% end %>
+                        <% if  hotel.take_away %>
+                          <span class="btn-theme-secondary px-1 py-2 rounded">Take Away</span>
+                        <% end %>
+                      </p>
+                      <% if hotel.open_at.present? %>
+                        <p class="card-text">
+                          <%= l hotel.open_at, format: :time %> to <%= l hotel.close_at, format: :time %>
+                        </p>
+                      <% end %>
                     </div>
                   </div>
                   <% end %>
@@ -60,11 +81,32 @@
                         <%= hotel.name %>
                       </h5>
                       <h6 class="card-subtitle mb-2 text-muted">
-                        <%= 2.4 %><span>&#9733; &#9733; &#9734; &#9734; &#9734;</span>
+                        <%= hotel_rating(hotel.id) %>
+                        <div class="d-flex">
+                          <% hotel_rating(hotel.id).to_i.times do  %>
+                            <span>&#9733;</span>
+                          <% end %>
+                          <% (5 - hotel_rating(hotel.id).to_i).times do %>
+                            <span>&#9734;</span>
+                          <% end %>
+                        </div>
                       </h6>
                       <p class="card-text">
                         <%= hotel.address %>
                       </p>
+                      <p class="card-text">
+                        <% if  hotel.dine_in %>
+                          <span class="btn-theme-secondary px-1 py-2 rounded">Dine In</span>
+                        <% end %>
+                        <% if  hotel.take_away %>
+                          <span class="btn-theme-secondary px-1 py-2 rounded">Take Away</span>
+                        <% end %>
+                      </p>
+                      <% if hotel.open_at.present? %>
+                        <p class="card-text">
+                          <%= l hotel.open_at, format: :time %> to <%= l hotel.close_at, format: :time %>
+                        </p>
+                      <% end %>
                     </div>
                   </div>
                   <% end %>

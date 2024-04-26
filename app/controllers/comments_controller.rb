@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   private
 
   def commentable_path
-    hotel_path(@comment.commentable)
+    hotel_path(@comment.commentable, tab: 'review')
   end
 
   def comment_params

@@ -1,9 +1,10 @@
 <div>
 
   <div class="container pt-4   ">
-    <div class="row ">
-      <div class="col-12 ">
-      </div>
+    <div class="position-relative d-flex overflow-x-auto">
+      <% @hotel.images.each do |image| %>
+        <%= image_tag image, class: "m-1 rounded", style: "width: 250px; height: 200px; object-fit: 'contain'" %>
+      <% end %>
     </div>
   </div>
   <hr>
@@ -21,27 +22,42 @@
       </li>
     </ul>
 
-    <div class="row <%= show_content('menu') %>">
-      <h3 class='fst-italic text-center text-theme text-decoration-underline'>Items</h3>
-      <% @hotel.products.each do |item| %>
+    <div class="row <%= show_content('overview') %> my-4">
+      <ul class="list-group">
+        <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-phone"></i></span><a class="text-decoration-none text-dark" href="tel:?<%= @hotel.phone %>"><%= @hotel.phone %> </a></li>
+        <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-location-dot"></i></span><a class="text-decoration-none text-dark" href="http://maps.google.com/?q=<%= @hotel.address %>"><%= @hotel.address %></a></li>
+        <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-lock-open"></i></span><%= l @hotel.open_at, format: :time %></li>
+        <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-lock"></i></span><%= l @hotel.close_at, format: :time %></li>
+        <% if  @hotel.dine_in %>
+          <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-utensils"></i></span>Dine In</li>
+        <% end %>
+        <% if  @hotel.take_away %>
+          <li class="list-group-item py-4"><span class='me-4'><i class="fa-solid fa-house"></i></span>Take Away</li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="row <%= show_content('menu') %> my-4">
+      <% @hotel.menus.each do |image| %>
         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 d-flex flex-row-reverse">
-                <div class="card-img-actions">
-                    <img src="https://images.deliveryhero.io/image/fd-pk/Products/29423742.jpg?width=150&height=130"
-                        class="card-img h-100 w-100" alt="Chicken Biryani">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"><%= item.name %></h5>
-                    <h6 class="card-subtitle mb-1 text-muted"><%= item.description %></h6>
-                    <p class="card-text">PKR: <%= item.price %></p>
-                </div>
-            </div>
+          <%= image_tag image, class: "m-1 rounded", style: "width: 100%; height: 100%; object-fit: 'contain'" %>
         </div>
       <% end %>
     </div>
 
-    <div class="<%= show_content('review') %>">
-      <div class="hotel--editor w-25 my-4">
+    <div class="<%= show_content('review') %> my-4">
+      <h1 class='text-center mb-2 d-flex justify-content-center flex-column'>
+        <%= hotel_rating(@hotel.id) %>
+        <div class="d-flex justify-content-center">
+          <% hotel_rating(@hotel.id).to_i.times do  %>
+            <span>&#9733;</span>
+          <% end %>
+          <% (5 - hotel_rating(@hotel.id).to_i).times do %>
+            <span>&#9734;</span>
+          <% end %>
+        </div>
+      </h1>
+      <div class="hotel--editor w-25">
         <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @hotel } %>
       </div>
       <div class="hotel--comments">
@@ -54,9 +70,11 @@
       <div class="comment--wrapper-mobile">
         <div class="textarea--wrapper form-group comment-input--container">
           <div class="comment--menu">
-            <%= simple_form_for([@hotel, Comment.new]) do |f| %>
-              <%= f.rich_text_area :content, placeholder: "Add Comment", class: "form-control" %>
-              <%= f.button :button, "Comment", class: "comment--button" %>
+            <% if user_signed_in? %>
+              <%= simple_form_for([@hotel, Comment.new]) do |f| %>
+                <%= f.rich_text_area :content, placeholder: "Add Comment", class: "form-control" %>
+                <%= f.button :button, "Comment", class: "comment--button" %>
+              <% end %>
             <% end %>
           </div>
         </div>

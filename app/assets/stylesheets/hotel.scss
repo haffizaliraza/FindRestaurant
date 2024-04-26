@@ -18,7 +18,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: var(--description-text);
+  color: #123e56;
   margin-bottom: 12px;
 }
 .comment--container {
@@ -31,7 +31,7 @@
     display: block;
     height: 100%;
     width: 1px;
-    background-color: var(--border-color);
+    background-color: #dae4ea;
     left: -25px;
     top: 4px;
   }
@@ -57,7 +57,7 @@
 
   &.active {
     .comment--menu {
-      color: var(--white);
+      color: white;
       p {
         height: 0;
         padding: 0;
@@ -83,7 +83,7 @@
   min-width: 28px;
   height: 28px;
   min-height: 28px;
-  background: no-repeat center image-url("arrow-up.svg") var(--primary);
+  background: no-repeat center image-url("arrow-up.svg") #eebc4a;
   border-radius: 50%;
   position: absolute;
   bottom: -5px;
@@ -98,7 +98,7 @@
   width: 24px;
   min-width: 24px;
   height: 24px;
-  background: no-repeat center image-url("paperclip.svg") var(--white);
+  background: no-repeat center image-url("paperclip.svg") white;
   display: inline-block;
   margin-right: 8px;
 }
@@ -111,13 +111,13 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: var(--description-text);
+  color: #123e56;
 }
 .comment-input--container {
   min-height: 48px;
   width: 95%;
   margin: 0;
-  border: 1px solid var(--border-color);
+  border: 1px solid #dae4ea;
   box-shadow: 0px 17px 28px -17px rgba(26, 79, 109, 0.04);
   border-radius: 8px;
 }
@@ -171,8 +171,8 @@
     width: 100%;
     min-height: 80px;
     bottom: 0;
-    background-color: var(--white);
-    border-top: 1px solid var(--border-color);
+    background-color: white;
+    border-top: 1px solid #dae4ea;
     trix-editor {
       padding-left: 43px !important;
     }
@@ -204,14 +204,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--link-color);
-  border: 1px solid var(--border-color);
+  color: rgba(255, 77, 38, 0.1);
+  border: 1px solid #dae4ea;
   border-radius: 100px;
   i {
     margin-right: 4px;
     display: flex;
     &:before {
-      color: var(--description-text);
+      color: #123e56;
       font-size: 12px;
       vertical-align: middle;
     }
@@ -223,7 +223,7 @@
     width: 10px;
     min-width: 10px;
     height: 10px;
-    background-color: var(--primary);
+    background-color: #eebc4a;
     border-radius: 50%;
     margin-left: 4px;
   }
@@ -302,4 +302,8 @@
   line-height: 24px;
   margin-top: 12px;
   padding: 6px 20px;
+}
+
+.comment--block {
+  border-bottom: 1px solid #dae4ea;
 }

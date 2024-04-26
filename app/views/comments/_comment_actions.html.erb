@@ -1,16 +1,18 @@
 <div class="hotel-item--buttons-container comment--buttons">
-  <%= link_to "javascript:void(0)", class: "badge-default btn-badge-default", id: "reply-comment-#{comment.id}", data: { action: "click->comment-reply#toggle" } do %>
-    <i class="fa-regular fa-comment"></i>
-    Reply
+  <% if user_signed_in? %>
+    <%= link_to "javascript:void(0)", class: "badge-default btn-badge-default", id: "reply-comment-#{comment.id}", data: { action: "click->comment-reply#toggle" } do %>
+      <i class="fa-regular fa-comment"></i>
+      Reply
+    <% end %>
   <% end %>
 
-  <% if comment.creator?(user) %>
+  <% if user_signed_in? && comment.creator?(current_user) %>
     <%= link_to edit_comment_path(comment), class: "badge-default btn-badge-default", id: "edit-comment-#{comment.id}" do %>
       <i class="fas fa-pencil-alt"></i>
       Edit
     <% end %>
 
-    <% if comment.no_replies? %>
+    <% if user_signed_in? && comment.creator?(current_user) && comment.no_replies? %>
       <%= button_to comment_path(comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, id: "destroy-comment-#{comment.id}", class: "badge-default btn-badge-default btn-badge-delete" do %>
         <i class="fa-solid fa-trash"></i>
         Delete

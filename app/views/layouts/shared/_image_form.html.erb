@@ -1,4 +1,4 @@
-<div id='image-preview' class='row'>
+<div id="<%= div_id %>" class='row'>
   <% documents.compact_blank.each do |document| %>
     <%= image_tag(document, class: 'image-preview col-3') %>
   <% end %>
