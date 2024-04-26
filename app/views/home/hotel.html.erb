@@ -61,7 +61,6 @@
         <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @hotel } %>
       </div>
       <div class="hotel--comments">
-        <%= turbo_stream_from @hotel, :comments %>
         <%= tag.div id: "#{dom_id(@hotel)}_comments" do %>
           <%= render partial: "comments/comment_with_replies", collection: @parent_comments, as: :comment, locals: { user: current_user } %>
         <% end %>
