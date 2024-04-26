@@ -8,14 +8,26 @@
             <% @nearby_hotels.each do |hotel| %>
               <div class="col-lg-4 col-md-12 mb-4">
                 <%= link_to hotel_path(hotel), class: 'text-decoration-none' do %>
-                  <div class="card">
-                    <div class="position-relative">
-                      <%= image_tag "omwm-listing.webp", class: "card-img-top w-100", alt: "Product Image" %>
+                  <div class="card hotel-detail-card">
+                    <div class="position-relative d-flex overflow-x-auto">
+                      <% if hotel.images.attached? %>
+                        <% hotel.images.each do |image| %>
+                          <%= image_tag image, class: "m-1 rounded", style: "width: 250px; height: 200px; object-fit: 'contain'" %>
+                        <% end %>
+                      <% else %>
+                        <%= image_tag "omwm-listing.webp", class: "m-1 rounded", style: "width: 250px; height: 200px; object-fit: 'contain'" %>
+                      <% end %>
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title mb-3"><%= hotel.name %></h5>
-                      <p><%= hotel.address %></p>
-                      <h6 class="mb-3"><%= hotel.phone %></h6>
+                      <h5 class="card-title">
+                        <%= hotel.name %>
+                      </h5>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                      <%= 4.4 %><span>&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                      </h6>
+                      <p class="card-text">
+                        <%= hotel.address %>
+                      </p>
                     </div>
                   </div>
                   <% end %>
@@ -29,21 +41,35 @@
       <div>
         <h4 class="text-center mt-4 mb-5"><strong>Recommended</strong></h4>
         <div class="row">
-          <% @hotels.each do |hotel| %>
-            <div class="col-lg-4 col-md-12 mb-4">
-              <%= link_to hotel_path(hotel), class: 'text-decoration-none' do %>
-                <div class="card">
-                  <div class="position-relative">
-                    <%= image_tag "omwm-listing.webp", class: "card-img-top w-100", alt: "Product Image" %>
+          <% if @hotels.count > 0 %>
+            <% @hotels.each do |hotel| %>
+              <div class="col-lg-4 col-md-12 mb-4">
+                <%= link_to hotel_path(hotel), class: 'text-decoration-none' do %>
+                  <div class="card hotel-detail-card">
+                    <div class="position-relative d-flex overflow-x-auto">
+                      <% if hotel.images.attached? %>
+                        <% hotel.images.each do |image| %>
+                          <%= image_tag image, class: "m-1 rounded", style: "width: 250px; height: 200px; object-fit: 'contain'" %>
+                        <% end %>
+                      <% else %>
+                        <%= image_tag "omwm-listing.webp", class: "m-1 rounded", style: "width: 250px; height: 200px; object-fit: 'contain'" %>
+                      <% end %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= hotel.name %>
+                      </h5>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                        <%= 2.4 %><span>&#9733; &#9733; &#9734; &#9734; &#9734;</span>
+                      </h6>
+                      <p class="card-text">
+                        <%= hotel.address %>
+                      </p>
+                    </div>
                   </div>
-                  <div class="card-body">
-                    <h5 class="card-title mb-3"><%= hotel.name %></h5>
-                    <p><%= hotel.address %></p>
-                    <h6 class="mb-3"><%= hotel.phone %></h6>
-                  </div>
+                  <% end %>
                 </div>
-                <% end %>
-              </div>
+            <% end %>
           <% end %>
         </div>
       <div>

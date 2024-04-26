@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id_for_records(@parent || @commentable, @comment) do %>
+  <%= render partial: "comments/form", locals: { comment: @comment, commentable: @parent || @commentable } %>
+<% end %>

@@ -98,10 +98,14 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.7.2)
     irb (1.12.0)
       rdoc
@@ -122,6 +126,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.22.3)
     msgpack (1.7.2)
@@ -196,12 +201,17 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    ruby-vips (2.2.1)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     selenium-webdriver (4.19.0)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -255,12 +265,14 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   puma (~> 5.0)
   rails (~> 7.0.8)
   redis (~> 4.0)
   selenium-webdriver
+  simple_form
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

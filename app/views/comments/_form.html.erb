@@ -1,0 +1,15 @@
+<% model = [local_assigns[:commentable], comment].compact %>
+
+<%= simple_form_for(model, data: local_assigns[:data],
+    html: { id: dom_id_for_records(*model), class: local_assigns[:class] }) do |f| %>
+
+  <%= f.rich_text_area :content, placeholder: "Enter here", id: "#{dom_id_for_records(*model)}_content",
+                       class: "form-control" %>
+  <span class="text-error"><%= comment.errors[:content].join(", ") %></span>
+  <div>
+    <%= f.button :button, "Comment", id: "#{dom_id_for_records(*model)}_button", data: { turbo_frame: "_self" },
+                 class: "btn btn-primary little hotel--editor-button" %>
+    <%= link_to "Cancel", comment, class: "btn btn-primary little hotel--editor-button" if comment.persisted? %>
+  </div>
+
+<% end %>

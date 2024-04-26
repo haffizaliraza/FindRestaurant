@@ -9,45 +9,60 @@
   <hr>
 
   <div class="container mt-5 pb-5  ">
-      <div class="row">
-        <h3 class='fst-italic text-center text-theme text-decoration-underline'>Items</h3>
-        <% @hotel.products.each do |item| %>
-          <div class="col-md-6 col-lg-4 mb-4">
-              <div class="card h-100 d-flex flex-row-reverse">
-                  <div class="card-img-actions">
-                      <img src="https://images.deliveryhero.io/image/fd-pk/Products/29423742.jpg?width=150&height=130"
-                          class="card-img h-100 w-100" alt="Chicken Biryani">
-                  </div>
-                  <div class="card-body">
-                      <h5 class="card-title"><%= item.name %></h5>
-                      <h6 class="card-subtitle mb-1 text-muted"><%= item.description %></h6>
-                      <p class="card-text">PKR: <%= item.price %></p>
-                  </div>
-              </div>
-          </div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link <%= active_tab('overview') %>" href="/hotel/<%= @hotel.slug %>?tab=overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= active_tab('menu') %>" href="/hotel/<%= @hotel.slug %>?tab=menu">Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= active_tab('review') %>" href="/hotel/<%= @hotel.slug %>?tab=review">Reviews</a>
+      </li>
+    </ul>
+
+    <div class="row <%= show_content('menu') %>">
+      <h3 class='fst-italic text-center text-theme text-decoration-underline'>Items</h3>
+      <% @hotel.products.each do |item| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 d-flex flex-row-reverse">
+                <div class="card-img-actions">
+                    <img src="https://images.deliveryhero.io/image/fd-pk/Products/29423742.jpg?width=150&height=130"
+                        class="card-img h-100 w-100" alt="Chicken Biryani">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%= item.name %></h5>
+                    <h6 class="card-subtitle mb-1 text-muted"><%= item.description %></h6>
+                    <p class="card-text">PKR: <%= item.price %></p>
+                </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="<%= show_content('review') %>">
+      <div class="hotel--editor w-25 my-4">
+        <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @hotel } %>
+      </div>
+      <div class="hotel--comments">
+        <%= turbo_stream_from @hotel, :comments %>
+        <%= tag.div id: "#{dom_id(@hotel)}_comments" do %>
+          <%= render partial: "comments/comment_with_replies", collection: @parent_comments, as: :comment, locals: { user: current_user } %>
         <% end %>
       </div>
 
-      <div class="row">
-        <h3 class='fst-italic text-center text-theme text-decoration-underline'>Deals</h3>
-        <% @hotel.deals.each do |item| %>
-          <div class="col-md-6 col-lg-4 mb-4">
-              <div class="card h-100 d-flex flex-row-reverse">
-                  <div class="card-img-actions">
-                      <img src="https://images.deliveryhero.io/image/fd-pk/Products/29423742.jpg?width=150&height=130"
-                          class="card-img h-100 w-100" alt="Chicken Biryani">
-                  </div>
-                  <div class="card-body">
-                      <h5 class="card-title"><%= item.name %></h5>
-                      <h6 class="card-subtitle mb-1 text-muted"><%= item.description %></h6>
-                      <p class="card-text">PKR: <%= item.price %></p>
-                  </div>
-              </div>
+      <div class="comment--wrapper-mobile">
+        <div class="textarea--wrapper form-group comment-input--container">
+          <div class="comment--menu">
+            <%= simple_form_for([@hotel, Comment.new]) do |f| %>
+              <%= f.rich_text_area :content, placeholder: "Add Comment", class: "form-control" %>
+              <%= f.button :button, "Comment", class: "comment--button" %>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
+    </div>
+
   </div>
-
-
 
 </div>

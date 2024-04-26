@@ -17,7 +17,8 @@ module Admin
     def edit; end
 
     def update
-      if @hotel.update(hotel_params)
+      if @hotel.update(hotel_params.except(:images))
+        @hotel.images.attach(hotel_params[:images])
         redirect_to admin_hotels_path, notice: 'Hotel updated'
       else
         render :edit, status: :unprocessable_entity
@@ -64,7 +65,9 @@ module Admin
     end
 
     def hotel_params
-      params.require(:hotel).permit(:name, :address, :latitude, :longitude, :phone)
+      params.require(:hotel).permit(
+        :name, :address, :latitude, :longitude, :phone, :close_at, :open_at, images: []
+      )
     end
   end
 end

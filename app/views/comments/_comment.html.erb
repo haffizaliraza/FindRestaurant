@@ -1,0 +1,25 @@
+<%= turbo_stream_from comment %>
+
+<% hide_replies = local_assigns[:hide_replies] %>
+
+<%= turbo_frame_tag comment do %>
+  <div class="comment--block">
+    <div class="hotel--user hotel-item--user comment-user">
+      <%= render partial: "layouts/shared/avatar", locals: { avatar: comment.creator_avatar } %>
+      <%= comment.creator_name %>
+      <span class="hotel-item--date"><%= l comment.created_at, format: :datetime %></span>
+    </div>
+    <div class="comment--container">
+      <div class="comment--text" data-controller="link-new-tab">
+        <%= comment.content %>
+      </div>
+      <%= render("comments/comment_actions", comment: comment, user: user) %>
+      <div id="<%= dom_id(comment) %>_comments" class="comment--block">
+        <%= render partial: "comments/form", locals: { commentable: comment, comment: Comment.new, data: { comment_reply_target: "form" }, class: "d-none" } %>
+        <% unless hide_replies %>
+          <%= render partial: "comments/comment_with_replies", collection: comment.replies.order_with_associations, as: :comment, locals: { user: user } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

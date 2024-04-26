@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   get 'get_location', to: "home#get_location"
   get 'hotel/:id', to: "home#hotel", as: 'hotel'
 
+  resources :comments do
+    resources :comments, module: :comments
+  end
+
+  resources :hotel do
+    resources :comments, module: :hotels
+  end
+
   namespace :admin do
     resources :users, :locations
 

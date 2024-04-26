@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      default: "%A %d.%m.%Y"
+      date: "%d.%m.%Y"
+      datetime: "(%I:%M %p - %d-%m-%Y)"
+      day: "%A"
+      expanded: "%-d %b,  %I:%M %p"
+      time: "%I:%M %p"

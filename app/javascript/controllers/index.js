@@ -2,22 +2,28 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application";
+import { application } from "./application"
 
-import CsvUploaderController from "./csv_uploader_controller";
-application.register("csv-uploader", CsvUploaderController);
+import CommentReplyController from "./comment_reply_controller"
+application.register("comment-reply", CommentReplyController)
 
-import HelloController from "./hello_controller";
-application.register("hello", HelloController);
+import CsvUploaderController from "./csv_uploader_controller"
+application.register("csv-uploader", CsvUploaderController)
 
-import ModalsController from "./modals_controller";
-application.register("modals", ModalsController);
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
 
-import PasswordToggleController from "./password_toggle_controller";
-application.register("password-toggle", PasswordToggleController);
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)
 
-import ShowModalController from "./show_modal_controller";
-application.register("show-modal", ShowModalController);
+import PasswordToggleController from "./password_toggle_controller"
+application.register("password-toggle", PasswordToggleController)
 
-import ToastController from "./toast_controller";
-application.register("toast", ToastController);
+import PreviewImageController from "./preview_image_controller"
+application.register("preview-image", PreviewImageController)
+
+import ShowModalController from "./show_modal_controller"
+application.register("show-modal", ShowModalController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)

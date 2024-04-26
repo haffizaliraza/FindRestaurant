@@ -220,3 +220,15 @@ body {
 .text-theme {
   color: #eebc4a;
 }
+
+.hotel-detail-card {
+  content: "";
+}
+
+@media (max-width: 479px) {
+  .hotel-detail-card {
+    border: transparent;
+    border-bottom: 1px solid red;
+    border-radius: 0;
+  }
+}

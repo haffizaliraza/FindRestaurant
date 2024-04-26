@@ -1,0 +1,5 @@
+<% if avatar.present? %>
+  <%= image_tag avatar, class: "avatar--image" %>
+<% else %>
+  <%= image_tag "avatar-empty.png", class: "avatar--image" %>
+<% end %>

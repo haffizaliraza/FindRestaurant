@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white">
+<nav class="navbar d-none d-md-block navbar-expand-md navbar-light bg-white">
   <div class="row container-fluid ">
-    <div class=" col-4 collapse  navbar-collapse justify-content-center ">
+    <div class="col-4 collapse  navbar-collapse justify-content-center ">
       <div class="nav-link fw-bolder">
         <a href="/"><%= image_tag "restaurent.png", class: 'brand-logo', alt: "Location" %></a>
       </div>
@@ -39,6 +39,46 @@
               Logout
             <% end %>
           </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar d-md-none d-block navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <div class='d-flex'>
+      <a class="navbar-brand" href="/"><%= image_tag "restaurent.png", class: 'brand-logo', alt: "Location" %></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <%= link_to get_location_path, method: :get, data: { turbo_frame: "remote_modal" }, class: 'text-decoration-none' do %>
+        <ul class="navbar-nav navbar-hover ">
+          <li class="nav-item navbar-logo d-flex">
+            <span class=""><%= image_tag "icons8-location-50.png", alt: "Location" %></span>
+            <span class="navbar-Location">
+              <span class="nav-link">Location <span><%= session[:location] ? session[:location] : 'Choose Location' %></span></span>
+            </span>
+          </li>
+        </ul>
+      <% end %>
+      <ul class="navbar-nav ms-auto">
+        <% unless user_signed_in? %>
+          <li class="nav-item d-flex">
+            <a class=" nav-link nav-button1 cursor-pointer" href="<%= new_user_session_path %>"><button type="button">Log in</button></a>
+            <a class="nav-link mx-2 nav-button2" href="<%= new_user_registration_path %>"><button type="button">Sign up</button></a>
+          </li>
+        <% else %>
+          <% if current_user.admin_user? %>
+            <li class="nav-item d-flex">
+              <a class=" nav-link mx-2 nav-button1 cursor-pointer" href="<%= dashboard_path %>"><button type="button">Dashboard</button></a>
+              <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure you want to logout?' } }, class: 'btn-theme mt-2' do %>
+                Logout
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>

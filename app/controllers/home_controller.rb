@@ -4,8 +4,13 @@ class HomeController < ApplicationController
 
   def index
     @location = user_loaction
-    @nearby_hotels = Hotel.where("address LIKE ?", "%#{@location}%")
-    @hotels = Hotel.where.not("address LIKE ?", "%#{@location}%")
+    if @location
+      @nearby_hotels = Hotel.where("address LIKE ?", "%#{@location}%")
+      @hotels = Hotel.where.not("address LIKE ?", "%#{@location}%")
+    else
+      @nearby_hotels = []
+      @hotels = Hotel.all
+    end
   end
   
   def get_location
@@ -17,8 +22,9 @@ class HomeController < ApplicationController
 
   def hotel
     @hotel = Hotel.includes(:deals, :products).find_by(slug: params[:id])
-
     return redirect_to root_path, alert: 'Something went wrong!' if @hotel.blank?
+
+    @parent_comments = @hotel.comments_all_ordered
   end
 
   private 
